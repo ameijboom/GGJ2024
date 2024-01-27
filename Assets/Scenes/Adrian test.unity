@@ -798,6 +798,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9387970108160623, guid: f54bec5680670bb4fb621324db8ac502, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 740731142534330899, guid: f54bec5680670bb4fb621324db8ac502,
         type: 3}
       propertyPath: m_Pivot.x
@@ -903,7 +907,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fuel
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3016965664047771937, guid: f54bec5680670bb4fb621324db8ac502,
+        type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016965664047771937, guid: f54bec5680670bb4fb621324db8ac502,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016965664047771937, guid: f54bec5680670bb4fb621324db8ac502,
+        type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234069444979803987, guid: f54bec5680670bb4fb621324db8ac502,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234069444979803987, guid: f54bec5680670bb4fb621324db8ac502,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5020968649158688335, guid: f54bec5680670bb4fb621324db8ac502, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
