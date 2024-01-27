@@ -123,6 +123,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &25341770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5202724924238705510, guid: b44c2a236b3c4d8918569db63f707f76,
+    type: 3}
+  m_PrefabInstance: {fileID: 3590122264999883468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &25341779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25341770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0fe821034dec46efa23a0ed036aab77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feet: []
+  jumpHeight: 100
+  canJump: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,8 +231,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.034992505, y: 0.9330594, z: -0.2507623, w: -0.25552693}
-  m_LocalPosition: {x: 59.09, y: 8.45, z: 14.34}
+  m_LocalRotation: {x: 0.038105212, y: 0.9521892, z: -0.15469062, w: 0.26068112}
+  m_LocalPosition: {x: 83.778, y: 2.037, z: -70.99077}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -528,7 +549,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5202724924238705510, guid: b44c2a236b3c4d8918569db63f707f76,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 25341779}
   m_SourcePrefab: {fileID: 100100000, guid: b44c2a236b3c4d8918569db63f707f76, type: 3}
 --- !u!1001 &4473392945964168503
 PrefabInstance:
