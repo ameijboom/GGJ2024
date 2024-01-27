@@ -21,5 +21,5 @@ public class Dash : MonoBehaviour
         }
     }
 
-    private void DoDash() => _rb.AddForce(_rb.rotation * Vector3.forward * (_dashPower * Time.fixedDeltaTime), ForceMode.Impulse);
+    public void DoDash() => _rb.AddForce(_rb.rotation * Vector3.forward * (_dashPower * Time.fixedDeltaTime), ForceMode.Impulse);
 }
