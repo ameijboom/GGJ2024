@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    [SerializeField] private List<IKFootHandler> feet;
     [SerializeField] private float jumpHeight;
     private Rigidbody _rb;
     public bool canJump;
@@ -16,7 +17,14 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canJump) DoJump();
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        {
+            foreach (IKFootHandler foot in feet)
+            {
+                foot.enabled = false;
+            }
+            DoJump();
+        }
     }
 
     private void DoJump()
@@ -26,5 +34,9 @@ public class Jump : MonoBehaviour
         _rb.mass = 10f;
         _rb.drag = .5f;
         canJump = false;
+        foreach (IKFootHandler foot in feet)
+        {
+            foot.enabled = true;
+        }
     }
 }
