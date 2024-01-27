@@ -1,16 +1,18 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FuelBar : MonoBehaviour
+namespace Fuel
 {
-    [SerializeField] private float fuel = 100f;
-    public Slider slider;
-    public Image image;
-    
-    private void Update()
+    public class FuelBar : MonoBehaviour
     {
-        fuel -= Time.deltaTime;
-        slider.value = fuel;
+        [SerializeField] private float fuel = 100f;
+        public Slider slider;
+        public Image image;
+    
+        private void Update()
+        {
+            fuel -= Time.deltaTime;
+            slider.value = fuel;
+        }
     }
 }
