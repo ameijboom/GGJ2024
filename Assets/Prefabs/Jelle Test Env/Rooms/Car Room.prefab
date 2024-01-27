@@ -423,6 +423,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Highway
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ae57b26e750fea44a914a75898f95a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -463,6 +468,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 887529459792063665}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ae57b26e750fea44a914a75898f95a9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 852172979436143901}
   m_SourcePrefab: {fileID: 100100000, guid: 2ae57b26e750fea44a914a75898f95a9, type: 3}
 --- !u!4 &349717095096772119 stripped
 Transform:
@@ -665,3 +674,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 27.489813, z: 150}
   m_Center: {x: 12.75, y: 16.255093, z: 60}
+--- !u!114 &852172979436143901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121855305063316653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4b9f0be900747b69b5a16f4bac9088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

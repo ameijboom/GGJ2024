@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 7139027415640671733}
   - component: {fileID: 1517216662239024202}
   - component: {fileID: 4402713569478036477}
+  - component: {fileID: 5162030598739865600}
   m_Layer: 0
   m_Name: PolyShape
   m_TagString: Untagged
@@ -338,7 +339,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 76
+  m_VersionIndex: 79
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -437,6 +438,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &5162030598739865600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097135680134270473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4b9f0be900747b69b5a16f4bac9088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2284885634367098138
 GameObject:
   m_ObjectHideFlags: 0
