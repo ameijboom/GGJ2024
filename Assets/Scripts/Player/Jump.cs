@@ -7,6 +7,7 @@ public class Jump : MonoBehaviour
 {
     [SerializeField] private float jumpHeight;
     private Rigidbody _rb;
+    public bool canJump;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -15,13 +16,15 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) DoJump();
+        if (Input.GetKeyDown(KeyCode.Space) && canJump) DoJump();
     }
 
     private void DoJump()
     {
-        _rb.AddForce(Vector3.up * jumpHeight * Time.deltaTime * 10, ForceMode.Impulse);
+        _rb.AddForce(Vector3.up * jumpHeight * Time.deltaTime, ForceMode.Impulse);
 
-        _rb.drag = 1f;
+        _rb.mass = 10f;
+        _rb.drag = .5f;
+        canJump = false;
     }
 }
