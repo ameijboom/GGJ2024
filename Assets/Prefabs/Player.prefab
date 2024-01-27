@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4bb9c2b803b248d49a845619f197f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dashPower: 3500
+  _dashPower: 2000
 --- !u!114 &7685927680925377918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd315345e1f5fbe0cb7ae1b9330e0b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastRespawnPoint: {fileID: 0}
 --- !u!1 &8998774351645051343
 GameObject:
   m_ObjectHideFlags: 0
