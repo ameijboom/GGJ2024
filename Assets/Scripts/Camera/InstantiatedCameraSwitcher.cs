@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Camera
 {
-	public class CameraCollider : MonoBehaviour
+	public class InstantiatedCameraSwitcher : MonoBehaviour
 	{
 		[CanBeNull] private CinemachineVirtualCamera _roomCamera = null;
 
