@@ -6,7 +6,6 @@ public class Dash : MonoBehaviour
 {
     [SerializeField] private float _dashPower;
     private Rigidbody _rb;
-    private Quaternion _direction;
 
     void Start() 
     {
@@ -16,13 +15,11 @@ public class Dash : MonoBehaviour
 
     void Update()
     {
-        _direction = _rb.rotation;
-
-        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             DoDash();
         }
     }
 
-    private void DoDash() => _rb.AddForce(_direction * Vector3.forward * (_dashPower * Time.fixedDeltaTime), ForceMode.Impulse);
+    private void DoDash() => _rb.AddForce(_rb.rotation * Vector3.forward * (_dashPower * Time.fixedDeltaTime), ForceMode.Impulse);
 }
