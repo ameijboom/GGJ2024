@@ -16,7 +16,6 @@ namespace Player
 			_direction = _rb.rotation;
 		}
 
-
 		private void FixedUpdate()
 		{
 			float horizontal = Input.GetAxis("Horizontal");
