@@ -185,3 +185,5 @@ fmod_editor.log
 ### Krita
 # Ignore autosaves
 *.kra-autosave.kra
+
+.DS_STORE
