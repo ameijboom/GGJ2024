@@ -5,7 +5,7 @@ namespace Room
 {
 	public class RoomCollider : MonoBehaviour
 	{
-		[MustBeAssigned] [SerializeField] private Collider roomCollider;
+		[MustBeAssigned, SerializeField] private Collider roomCollider;
 		public Collider GetRoomCollider() => roomCollider;
 
 		private void OnValidate()
@@ -14,6 +14,11 @@ namespace Room
 			if (colliders.Length == 0)
 				Debug.LogError("No colliders found on roomCameraCollider", roomCollider);
 			colliders.ForEach(col => col.isTrigger = true);
+		}
+
+		private void Start()
+		{
+			roomCollider.gameObject.tag = "Room";
 		}
 	}
 }

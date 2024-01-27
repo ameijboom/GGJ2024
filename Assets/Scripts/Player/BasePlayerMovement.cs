@@ -13,6 +13,11 @@ namespace Player
 		private void Awake()
 		{
 			_rb = GetComponent<Rigidbody>();
+			ResetDirection();
+		}
+
+		public void ResetDirection()
+		{
 			_direction = _rb.rotation;
 		}
 

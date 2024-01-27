@@ -2,7 +2,7 @@ using Cinemachine;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Camera
+namespace Room.Instances
 {
 	public class InstantiatedCameraSwitcher : MonoBehaviour
 	{

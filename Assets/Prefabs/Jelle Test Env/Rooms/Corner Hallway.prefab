@@ -402,7 +402,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6296277529320489969}
+  - component: {fileID: 2876944907080733808}
   - component: {fileID: 5862115359315667458}
+  - component: {fileID: 4223896945764602652}
   m_Layer: 0
   m_Name: Corner Hallway
   m_TagString: Untagged
@@ -423,11 +425,25 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8163788204648856653}
   - {fileID: 7276194996032400552}
+  - {fileID: 8163788204648856653}
+  - {fileID: 605079658155073666}
   - {fileID: 5704595497579140216}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2876944907080733808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877138160717362776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa505e5cb54470e90dd741a439c7694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomCollider: {fileID: 2214877292623200412}
 --- !u!114 &5862115359315667458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,7 +457,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 4592332745635604367}
-  roomCameraCollider: {fileID: 2214877292623200412}
+--- !u!114 &4223896945764602652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877138160717362776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66b90da8c1fd35d0b68660dc30204f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 605079658155073666}
 --- !u!1 &7000608063708798933
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,8 +482,8 @@ GameObject:
   - component: {fileID: 2214877292623200412}
   - component: {fileID: 397289903195924890}
   m_Layer: 0
-  m_Name: Camera Collider
-  m_TagString: Untagged
+  m_Name: Colliders
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -517,6 +545,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 13, z: 30}
   m_Center: {x: 0, y: 5.5, z: -10}
+--- !u!1 &7472866381651014658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605079658155073666}
+  m_Layer: 0
+  m_Name: Respawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &605079658155073666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472866381651014658}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071069, z: -0, w: 0.70710665}
+  m_LocalPosition: {x: -24, y: 0.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6296277529320489969}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &9071012668181229988
 GameObject:
   m_ObjectHideFlags: 0

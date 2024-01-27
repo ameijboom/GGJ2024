@@ -1,14 +1,14 @@
 using Cinemachine;
 using MyBox;
-using Room;
+using Room.Instances;
 using UnityEngine;
 
-namespace Camera
+namespace Room.Setuppers
 {
 	[RequireComponent(typeof(RoomCollider))]
-	public class RoomCameraSwitcherSetup : MonoBehaviour
+	public class RoomSetupCameraSwitcher : MonoBehaviour
 	{
-		[MustBeAssigned] [SerializeField] private CinemachineVirtualCamera roomCamera;
+		[MustBeAssigned, SerializeField]  private CinemachineVirtualCamera roomCamera;
 
 		private void Awake()
 		{
