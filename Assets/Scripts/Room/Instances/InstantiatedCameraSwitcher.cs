@@ -2,9 +2,9 @@ using Cinemachine;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Camera
+namespace Room.Instances
 {
-	public class CameraCollider : MonoBehaviour
+	public class InstantiatedCameraSwitcher : MonoBehaviour
 	{
 		[CanBeNull] private CinemachineVirtualCamera _roomCamera = null;
 
