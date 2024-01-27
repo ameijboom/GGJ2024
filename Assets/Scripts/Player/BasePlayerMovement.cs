@@ -8,13 +8,14 @@ namespace Player
 		[SerializeField] private float rotationSpeed;
 
 		private Rigidbody _rb;
+		private Quaternion _direction;
 
 		private void Awake()
 		{
 			_rb = GetComponent<Rigidbody>();
+			_direction = _rb.rotation;
 		}
 
-		private Quaternion _direction = Quaternion.identity;
 
 		private void FixedUpdate()
 		{
