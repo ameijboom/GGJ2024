@@ -1,85 +1,114 @@
+using MyBox;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Popup : MonoBehaviour
 {
-	[SerializeField] private Canvas _canvas;
-	[SerializeField] private Dash _playerDash;
-	[SerializeField] private float _timeBetweenPopups;
+	private enum PopupStateEnum
+	{
+		Hidden,
+		CountingDown,
+		Thanks,
+	}
 
-	private Coroutine _dashRoutine;
-	private Rect _rect;
-	private string _initialPopupText;
+	[SerializeField, MustBeAssigned] private Dash playerDash;
+	[SerializeField] private int countDownSeconds;
+	[SerializeField] private string thanksText;
+	[FormerlySerializedAs("randomChangePerSecond")]
+	[SerializeField, Range(0f, 100f)] private float randomChancePerSecond;
+
+	[SerializeField, ReadOnly] private PopupStateEnum popupState;
+
+	private Canvas _canvas;
 	private TMP_Text _popupText;
+	private string _initialPopupText;
+
+	private PopupStateEnum PopupState
+	{
+		get { return popupState; }
+		set
+		{
+			switch(value)
+			{
+				case PopupStateEnum.Hidden:
+					_canvas.enabled = false;
+					break;
+				case PopupStateEnum.CountingDown:
+					_canvas.enabled = true;
+					_popupText.text = string.Format(_initialPopupText, countDownSeconds);
+					break;
+				case PopupStateEnum.Thanks:
+					playerDash.DoDash();
+					_canvas.enabled = true;
+					_popupText.text = thanksText;
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(value), value, null);
+			}
+			popupState = value;
+		}
+	}
 
 	private void Awake()
 	{
-		_rect = GetComponent<RectTransform>().rect;
+		_canvas = GetComponentInParent<Canvas>();
 
 		_popupText = GetComponentInChildren<TMP_Text>();
 		_initialPopupText = _popupText.text;
+
+		PopupState = PopupStateEnum.Hidden;
 	}
 
 	private void Start()
 	{
-		_canvas.enabled = false;
-		StartCoroutine(LoopMaybeShowPopup());
+		InvokeRepeating(nameof(TryShowPopup), 5f, 1f); //start after 5 seconds, repeat every second
 	}
 
-	private void Update()
+	private void TryShowPopup()
 	{
-		if (Input.GetKeyDown(KeyCode.W) && _canvas.enabled)
+		if (PopupState == PopupStateEnum.Hidden)
 		{
-			StopCoroutine(_dashRoutine);
-			StartCoroutine(AfterPurchase());
+			if (Random.Range(0f, 100f) < randomChancePerSecond)
+				StartCoroutine(Countdown());
 		}
 	}
 
-	private Vector2 GetRandomPositionOnCanvas() => new(
-		Random.Range(0 + _rect.width, _canvas.pixelRect.width - _rect.width),
-		Random.Range(0 + _rect.height, _canvas.pixelRect.height - _rect.height));
-
-	private IEnumerator LoopMaybeShowPopup()
+	private IEnumerator Countdown()
 	{
-		for(;;)
-		{
-			int random = Random.Range(1, 15);
-
-			if (!_canvas.enabled)
-			{
-				if (random <= 5)
-				{
-					_canvas.enabled = true;
-					_dashRoutine = StartCoroutine(ForceDash());
-				}
-
-				transform.position = GetRandomPositionOnCanvas();
-
-				yield return new WaitForSeconds(_timeBetweenPopups);
-			}
-
-			yield return null;
-		}
-	}
-
-	private IEnumerator ForceDash()
-	{
-		const int maxTime = 5;
-		_popupText.text = string.Format(_initialPopupText, maxTime);
-		for (int i = maxTime - 1; i >= 0; i--)
+		PopupState = PopupStateEnum.CountingDown;
+		for(int i = countDownSeconds - 1; i > 0; i--)
 		{
 			yield return new WaitForSeconds(1f);
 			_popupText.text = string.Format(_initialPopupText, i);
 		}
-		_playerDash.DoDash();
-		StartCoroutine(AfterPurchase());
+
+		yield return new WaitForSeconds(0.5f);
+
+		yield return Thank();
 	}
 
-	private IEnumerator AfterPurchase()
+	private IEnumerator Thank()
 	{
-		_popupText.text = "Thank you for your purchase!";
+		PopupState = PopupStateEnum.Thanks;
+
 		yield return new WaitForSeconds(2f);
-		_canvas.enabled = false;
+
+		PopupState = PopupStateEnum.Hidden;
+	}
+
+	private void Update()
+	{
+		if (PopupState == PopupStateEnum.CountingDown)
+		{
+			if (Input.GetKeyDown(KeyCode.W))
+			{
+				StopAllCoroutines();
+				StartCoroutine(Thank());
+			}
+		}
 	}
 }
