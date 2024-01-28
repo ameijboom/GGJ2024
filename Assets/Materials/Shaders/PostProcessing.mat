@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Distance: 20
-    - _Resolution: 200
+    - _Resolution: 1000
     - _Speed: 2
     - _Steps: 80
     m_Colors: []
