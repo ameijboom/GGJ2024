@@ -1,6 +1,7 @@
 using IK;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Player
 {
@@ -8,6 +9,8 @@ namespace Player
 	{
 		[SerializeField] private List<IKFootHandler> feet;
 		[SerializeField] private float jumpHeight;
+		[SerializeField] private UnityEvent onJump;
+		
 		private Rigidbody _rb;
 		public bool canJump;
 
@@ -30,6 +33,7 @@ namespace Player
 
 		private void DoJump()
 		{
+			onJump.Invoke();
 			_rb.AddForce(Vector3.up * (jumpHeight * Time.deltaTime), ForceMode.Impulse);
 
 			_rb.mass = 10f;

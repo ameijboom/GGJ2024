@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class Track : MonoBehaviour
+namespace Audio
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class Track
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public AudioClip clip;
+        public int weight = 1;
     }
 }
