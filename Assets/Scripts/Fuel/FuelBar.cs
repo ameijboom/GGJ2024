@@ -8,8 +8,7 @@ namespace Fuel
     {
         [SerializeField] private float fuel = 100f;
         public Slider slider;
-        public Image image;
-    
+
         private void Update()
         {
             fuel -= Time.deltaTime;
@@ -21,7 +20,9 @@ namespace Fuel
         {
             if (fuel <= slider.minValue)
             {
-                SceneManager.LoadScene(0);
+                Scene currentScene = SceneManager.GetActiveScene();
+                int toLoad = (currentScene.buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
+                SceneManager.LoadScene(toLoad);
             }
         }
     }
