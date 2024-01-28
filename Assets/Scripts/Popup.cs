@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Popup : MonoBehaviour
@@ -17,7 +18,8 @@ public class Popup : MonoBehaviour
 	[SerializeField, MustBeAssigned] private Dash playerDash;
 	[SerializeField] private int countDownSeconds;
 	[SerializeField] private string thanksText;
-	[SerializeField, Range(0f, 100f)] private float randomChangePerSecond;
+	[FormerlySerializedAs("randomChangePerSecond")]
+	[SerializeField, Range(0f, 100f)] private float randomChancePerSecond;
 
 	[SerializeField, ReadOnly] private PopupStateEnum popupState;
 
@@ -70,7 +72,7 @@ public class Popup : MonoBehaviour
 	{
 		if (PopupState == PopupStateEnum.Hidden)
 		{
-			if (Random.Range(0f, 100f) < randomChangePerSecond)
+			if (Random.Range(0f, 100f) < randomChancePerSecond)
 				StartCoroutine(Countdown());
 		}
 	}
