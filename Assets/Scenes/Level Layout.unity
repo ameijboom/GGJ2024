@@ -403,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8810731204333532448, guid: 031c8258c4d1d4c41bd1abca9ba6b894,
         type: 3}
-      propertyPath: _playerDash
+      propertyPath: playerDash
       value: 
       objectReference: {fileID: 794316407}
     m_RemovedComponents: []
