@@ -8,8 +8,7 @@ namespace Player
 	[RequireComponent(typeof(BasePlayerMovement))]
 	public class PlayerRespawn : MonoBehaviour
 	{
-		[SerializeField, ReadOnly] [CanBeNull]
-		private Transform lastRespawnPoint = null;
+		[SerializeField, ReadOnly] [CanBeNull] private Transform lastRespawnPoint = null;
 
 		private Rigidbody _rb;
 		private BasePlayerMovement _playerMovement;
