@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Jelle Test Env.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Menu.unity
+    guid: 04cd49c6fa8d143babce028a4c4892b3
+  - enabled: 1
+    path: Assets/Scenes/Level Layout.unity
+    guid: 39186bb0bac90a04d93ec56cd90c84f7
   m_configObjects: {}
