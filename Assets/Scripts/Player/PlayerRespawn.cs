@@ -39,7 +39,7 @@ namespace Player
 		}
 
 		[ButtonMethod]
-		private void Respawn()
+		public void Respawn()
 		{
 			if (lastRespawnPoint == null) throw new UnityException("Don't have a respawn point!");
 
