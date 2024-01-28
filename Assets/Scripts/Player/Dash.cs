@@ -1,25 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
-public class Dash : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private float _dashPower;
-    private Rigidbody _rb;
+	public class Dash : MonoBehaviour
+	{
+		[FormerlySerializedAs("_dashPower")] [SerializeField] private float dashPower;
+		[SerializeField] private UnityEvent onDash;
 
-    void Start() 
-    {
-        _rb = GetComponent<Rigidbody>();
+		private Rigidbody _rb;
 
-    }
+		private void Start()
+		{
+			_rb = GetComponent<Rigidbody>();
+		}
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            DoDash();
-        }
-    }
+		private void Update()
+		{
+			if (Input.GetKeyDown(KeyCode.W))
+			{
+				DoDash();
+			}
+		}
 
-    public void DoDash() => _rb.AddForce(_rb.rotation * Vector3.forward * (_dashPower * Time.fixedDeltaTime), ForceMode.Impulse);
+		public void DoDash()
+		{
+			onDash.Invoke();
+			_rb.AddForce(_rb.rotation * Vector3.forward * (dashPower * Time.fixedDeltaTime), ForceMode.Impulse);
+		}
+	}
 }

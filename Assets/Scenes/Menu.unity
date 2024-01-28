@@ -465,9 +465,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene:
-    Scene: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
-    SceneName: SampleScene
-    sceneIndex: 0
+    Scene: {fileID: 102900000, guid: 39186bb0bac90a04d93ec56cd90c84f7, type: 3}
+    SceneName: Level Layout
+    sceneIndex: 1
     sceneEnabled: 1
 --- !u!114 &1126006178
 MonoBehaviour:

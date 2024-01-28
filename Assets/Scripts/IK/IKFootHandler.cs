@@ -1,78 +1,89 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cinemachine;
+using Player;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.Events;
 
-public class IKFootHandler : MonoBehaviour
+namespace IK
 {
-    [SerializeField] LayerMask terrainLayer = default;
-    [SerializeField] Transform body = default;
-    [SerializeField] IKFootHandler otherFoot = default;
-    [SerializeField] float speed = 1;
-    [SerializeField] float stepDistance = 4;
-    [SerializeField] float stepLength = 4;
-    [SerializeField] float stepHeight = 1;
-    [SerializeField] Vector3 footOffset = default;
-    float footSpacing;
-    Vector3 oldPosition, currentPosition, newPosition;
-    Vector3 oldNormal, currentNormal, newNormal;
-    float lerp;
+	public class IKFootHandler : MonoBehaviour
+	{
+		[SerializeField] private LayerMask terrainLayer = default;
+		[SerializeField] private Transform body = default;
+		[SerializeField] private IKFootHandler otherFoot = default;
+		[SerializeField] private float speed = 1;
+		[SerializeField] private float stepDistance = 4;
+		[SerializeField] private float stepLength = 4;
+		[SerializeField] private float stepHeight = 1;
+		[SerializeField] private Vector3 footOffset = default;
+		[SerializeField] private UnityEvent onSteppy = new();
 
-    private void Start()
-    {
-        footSpacing = transform.localPosition.x;
-        currentPosition = newPosition = oldPosition = transform.position;
-        currentNormal = newNormal = oldNormal = transform.up;
-        lerp = 1;
-    }
+		private Jump _jump;
+		private float _footSpacing;
+		private Vector3 _oldPosition, _currentPosition, _newPosition;
+		private Vector3 _oldNormal, _currentNormal, _newNormal;
+		private float _lerp;
 
-    // Update is called once per frame
+		private void Awake()
+		{
+			_jump = GetComponentInParent<Jump>();
+		}
 
-    void Update()
-    {
-        transform.position = currentPosition;
-        transform.up = currentNormal;
+		private void Start()
+		{
+			Transform t = transform;
+			_footSpacing = t.localPosition.x;
+			_currentPosition = _newPosition = _oldPosition = t.position;
+			_currentNormal = _newNormal = _oldNormal = t.up;
+			_lerp = 1;
+		}
 
-        Ray ray = new Ray(body.position + (body.right * footSpacing), Vector3.down);
+		private void Update()
+		{
+			Transform t = transform;
+			t.position = _currentPosition;
+			t.up = _currentNormal;
 
-        if (Physics.Raycast(ray, out RaycastHit info, 10, terrainLayer.value))
-        {
-            if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
-            {
-                lerp = 0;
-                int direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(newPosition).z ? 1 : -1;
-                newPosition = info.point + (body.forward * stepLength * direction) + footOffset;
-                newNormal = info.normal;
-            }
-        }
+			Ray ray = new(body.position + body.right * _footSpacing, Vector3.down);
 
-        if (lerp < 1)
-        {
-            Vector3 tempPosition = Vector3.Lerp(oldPosition, newPosition, lerp);
-            tempPosition.y += Mathf.Sin(lerp * Mathf.PI) * stepHeight;
+			if (Physics.Raycast(ray, out RaycastHit info, 10, terrainLayer.value))
+			{
+				if (Vector3.Distance(_newPosition, info.point) > stepDistance && !otherFoot.IsMoving() && _lerp >= 1)
+				{
+					_lerp = 0;
+					int direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(_newPosition).z ? 1 : -1;
+					_newPosition = info.point + body.forward * (stepLength * direction) + footOffset;
+					_newNormal = info.normal;
+					if (_jump.canJump)
+					{
+						onSteppy.Invoke();
+					}
+				}
+			}
 
-            currentPosition = tempPosition;
-            currentNormal = Vector3.Lerp(oldNormal, newNormal, lerp);
-            lerp += Time.deltaTime * speed;
-        }
-        else
-        {
-            oldPosition = newPosition;
-            oldNormal = newNormal;
-        }
-    }
+			if (_lerp < 1)
+			{
+				Vector3 tempPosition = Vector3.Lerp(_oldPosition, _newPosition, _lerp);
+				tempPosition.y += Mathf.Sin(_lerp * Mathf.PI) * stepHeight;
 
-    private void OnDrawGizmos()
-    {
+				_currentPosition = tempPosition;
+				_currentNormal = Vector3.Lerp(_oldNormal, _newNormal, _lerp);
+				_lerp += Time.deltaTime * speed;
+			}
+			else
+			{
+				_oldPosition = _newPosition;
+				_oldNormal = _newNormal;
+			}
+		}
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(newPosition, 0.2f);
-    }
-    
-    public bool IsMoving()
-    {
-        return lerp < 1;
-    }
+		private void OnDrawGizmos()
+		{
+			Gizmos.color = Color.blue;
+			Gizmos.DrawSphere(_newPosition, 0.2f);
+		}
+
+		public bool IsMoving()
+		{
+			return _lerp < 1;
+		}
+	}
 }

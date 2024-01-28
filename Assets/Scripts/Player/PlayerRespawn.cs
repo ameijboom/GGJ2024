@@ -8,8 +8,7 @@ namespace Player
 	[RequireComponent(typeof(BasePlayerMovement))]
 	public class PlayerRespawn : MonoBehaviour
 	{
-		[SerializeField, ReadOnly] [CanBeNull]
-		private Transform lastRespawnPoint = null;
+		[SerializeField, ReadOnly] [CanBeNull] private Transform lastRespawnPoint = null;
 
 		private Rigidbody _rb;
 		private BasePlayerMovement _playerMovement;
@@ -40,7 +39,7 @@ namespace Player
 		}
 
 		[ButtonMethod]
-		private void Respawn()
+		public void Respawn()
 		{
 			if (lastRespawnPoint == null) throw new UnityException("Don't have a respawn point!");
 
