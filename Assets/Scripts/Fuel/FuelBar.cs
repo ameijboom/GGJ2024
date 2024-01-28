@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Fuel
@@ -13,6 +14,15 @@ namespace Fuel
         {
             fuel -= Time.deltaTime;
             slider.value = fuel;
+            FuelEnd();
+        }
+
+        private void FuelEnd()
+        {
+            if (fuel <= slider.minValue)
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }
