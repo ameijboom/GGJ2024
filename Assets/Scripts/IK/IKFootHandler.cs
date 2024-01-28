@@ -1,4 +1,6 @@
+using Player;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace IK
 {
@@ -12,11 +14,18 @@ namespace IK
 		[SerializeField] private float stepLength = 4;
 		[SerializeField] private float stepHeight = 1;
 		[SerializeField] private Vector3 footOffset = default;
+		[SerializeField] private UnityEvent onSteppy = new();
 
+		private Jump _jump;
 		private float _footSpacing;
 		private Vector3 _oldPosition, _currentPosition, _newPosition;
 		private Vector3 _oldNormal, _currentNormal, _newNormal;
 		private float _lerp;
+
+		private void Awake()
+		{
+			_jump = GetComponentInParent<Jump>();
+		}
 
 		private void Start()
 		{
@@ -43,6 +52,10 @@ namespace IK
 					int direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(_newPosition).z ? 1 : -1;
 					_newPosition = info.point + body.forward * (stepLength * direction) + footOffset;
 					_newNormal = info.normal;
+					if (_jump.canJump)
+					{
+						onSteppy.Invoke();
+					}
 				}
 			}
 
@@ -64,7 +77,6 @@ namespace IK
 
 		private void OnDrawGizmos()
 		{
-
 			Gizmos.color = Color.blue;
 			Gizmos.DrawSphere(_newPosition, 0.2f);
 		}
