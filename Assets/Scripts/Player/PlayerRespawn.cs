@@ -19,6 +19,14 @@ namespace Player
 			_playerMovement = GetComponent<BasePlayerMovement>();
 		}
 
+		private void Update()
+		{
+			if (Input.GetKeyDown(KeyCode.R))
+			{
+				Respawn();
+			}
+		}
+
 		private void OnCollisionEnter(Collision other)
 		{
 			OnTriggerEnter(other.collider);
