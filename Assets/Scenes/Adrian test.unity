@@ -903,6 +903,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fuel
       objectReference: {fileID: 0}
+    - target: {fileID: 3016965664047771937, guid: f54bec5680670bb4fb621324db8ac502,
+        type: 3}
+      propertyPath: m_Value
+      value: 47
+      objectReference: {fileID: 0}
     - target: {fileID: 3234069444979803987, guid: f54bec5680670bb4fb621324db8ac502,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -912,6 +917,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287556694585985039, guid: f54bec5680670bb4fb621324db8ac502,
+        type: 3}
+      propertyPath: fuel
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

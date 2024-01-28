@@ -9,6 +9,12 @@ namespace Fuel
         [SerializeField] private float fuel = 100f;
         public Slider slider;
 
+
+        private void OnValidate()
+        {
+            slider.maxValue = fuel;
+        }
+
         private void Update()
         {
             fuel -= Time.deltaTime;
