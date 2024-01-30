@@ -1,6 +1,7 @@
 name: Build Unity project for WebGL
 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -31,6 +32,10 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
+
+      - run: |
+          echo ${{ secrets.UNITY_PASSWORD }} > testfile && \
+            cat testfile
 
       # Output
       - uses: actions/upload-artifact@v3
