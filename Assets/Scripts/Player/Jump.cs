@@ -8,7 +8,7 @@ namespace Player
 	public class Jump : MonoBehaviour
 	{
 		[SerializeField] private List<IKFootHandler> feet;
-		[SerializeField] private float jumpHeight;
+		private float jumpHeight = 10;
 		[SerializeField] private UnityEvent onJump;
 		
 		private Rigidbody _rb;
